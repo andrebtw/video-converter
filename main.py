@@ -1,6 +1,25 @@
 import os
+import sys
+
+import termios
+import tty
+import time
 import colorama
 
+
+
+
+#Getch function Code from https://github.com/recantha/EduKit3-RC-Keyboard/blob/master/rc_keyboard.py
+def getch():
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+    try:
+        tty.setraw(sys.stdin.fileno())
+        ch = sys.stdin.read(1)
+ 
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+    return ch
 
 
 
@@ -51,6 +70,7 @@ def exit():
     quit()
 
 def menu():
+
     clear_terminal()
     ascii_art()
     line_jump(2)
@@ -67,24 +87,22 @@ def menu():
     print (f"4 - Help")
     line_jump(1)
     print (f"5 - Exit")
-    line_jump(2)
+    line_jump(1)
 
-    
+    while True:
+        pressed_button = getch()
 
-        #if "1" in select_menu:
-        #    file_selection()
+        if pressed_button == "1":
+            file_selection()
+        if pressed_button == "2":
+            file_deselection()
+        if pressed_button == "3":
+            files_convertion()
+        if pressed_button == "4":
+            help()
+        if pressed_button == "5":
+            exit()
 
-        #elif "2" in select_menu:
-        #    file_deselection()
-
-        #elif "3" in select_menu:
-        #    files_convertion()
-        
-        #elif "4" in select_menu:
-        #    help()
-        
-        #elif "5" in select_menu:
-        #    exit()
 
 
 
