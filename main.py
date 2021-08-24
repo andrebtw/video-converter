@@ -6,7 +6,7 @@ import tty
 import time
 import colorama
 
-
+selected_files=[]
 
 
 #Getch function Code from https://github.com/recantha/EduKit3-RC-Keyboard/blob/master/rc_keyboard.py
@@ -54,7 +54,14 @@ def line_jump(number):
 
 
 def file_selection():
-    pass
+    clear_terminal()
+    line_jump(2)
+    
+    selected_file = str(input("Please select the file : "))
+
+    selected_files.append(selected_file)
+
+    menu()
 
 def file_deselection():
     pass
@@ -74,8 +81,6 @@ def menu():
     clear_terminal()
     ascii_art()
     line_jump(2)
-
-    selected_files=[]
         
     ###Menu Options###
     print (f"1 - Select a file   |   Selected Files : {selected_files}")
@@ -89,10 +94,13 @@ def menu():
     print (f"5 - Exit")
     line_jump(1)
 
-    while True:
+    menu = False
+
+    while menu == False:
         pressed_button = getch()
 
         if pressed_button == "1":
+            menu = True
             file_selection()
         if pressed_button == "2":
             file_deselection()
