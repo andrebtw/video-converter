@@ -64,7 +64,10 @@ def file_selection():
     menu()
 
 def file_deselection():
-    pass
+    clear_terminal()
+    line_jump(2)
+
+    #while 
 
 def files_convertion():
     pass
@@ -113,11 +116,9 @@ def menu():
 
 
 
-
 def main ():
     menu()
     
-
 
 
 if __name__ == "__main__":
