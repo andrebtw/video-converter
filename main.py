@@ -66,6 +66,12 @@ def file_selection():
 def file_deselection():
     clear_terminal()
     line_jump(2)
+    
+    for i in selected_files:
+    	print(f"{i} - {selected_files[i]}")
+    	line_jump(1)
+    
+    
 
     #while 
 
